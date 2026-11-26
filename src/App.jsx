@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
-  ArrowDown, ArrowDownRight, ArrowRight, ArrowUpRight, AtSign, BriefcaseBusiness,
-  Code2, Download, ExternalLink, Github, Instagram, Linkedin, Mail, MapPin,
-  Menu, Palette, Phone, Send, Sparkles, X, GraduationCap, BadgeCheck,
-  MonitorSmartphone, Megaphone, Layers3, Dribbble
+  ArrowDownRight, ArrowUpRight, Github, Linkedin, Instagram, Mail, Phone,
+  Menu, X, Code2, Palette, Layers3, MonitorSmartphone, Sparkles, Send,
+  GraduationCap, BriefcaseBusiness, ExternalLink, AtSign
 } from 'lucide-react'
 
 const profile = {
@@ -12,50 +11,47 @@ const profile = {
   role: 'Frontend Engineer',
   email: 'alviimahfuz@gmail.com',
   phone: '01751-797996',
-  intro: 'I build thoughtful digital experiences with clean interfaces, purposeful interactions and a strong eye for design.',
+  intro: 'I’m a frontend engineer with a creative eye for design. I enjoy turning ideas into clear, responsive and thoughtful digital experiences.'
 }
 
 const socials = [
-  { label: 'GitHub', handle: '@alviimahfuz', href: 'https://github.com/alviimahfuz', Icon: Github },
-  { label: 'LinkedIn', handle: '@MahfuzAhammed', href: 'https://www.linkedin.com/in/MahfuzAhammed', Icon: Linkedin },
-  { label: 'Instagram', handle: '@alviimahfuz', href: 'https://www.instagram.com/alviimahfuz', Icon: Instagram },
-  { label: 'X / Twitter', handle: '@AlviiMahfuz', href: 'https://x.com/AlviiMahfuz', Icon: AtSign },
-  { label: 'Pinterest', handle: '@AlviiMahfuz', href: 'https://www.pinterest.com/AlviiMahfuz', Icon: Palette },
-  { label: 'Behance', handle: '@alviimahfuz', href: 'https://www.behance.net/alviimahfuz', Icon: Dribbble },
+  { label: 'GitHub', href: 'https://github.com/alviimahfuz', Icon: Github },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/MahfuzAhammed', Icon: Linkedin },
+  { label: 'Instagram', href: 'https://www.instagram.com/alviimahfuz', Icon: Instagram },
+  { label: 'Behance', href: 'https://www.behance.net/alviimahfuz', Icon: Palette },
 ]
 
-const skillGroups = [
-  { title: 'Frontend Development', icon: Code2, items: ['HTML', 'CSS', 'Tailwind CSS', 'JavaScript', 'TypeScript', 'React', 'Redux', 'Next.js'] },
-  { title: 'Backend & Database', icon: Layers3, items: ['Node.js', 'Express.js', 'MongoDB', 'Mongoose'] },
-  { title: 'Design & Creative', icon: Palette, items: ['Graphic Design', 'Adobe Illustrator', 'Adobe Photoshop', 'UI / UX Design'] },
-  { title: 'Digital Marketing', icon: Megaphone, items: ['Digital Marketing', 'Social Media Marketing', 'Content Strategy'] },
+const skills = [
+  { title: 'Core Languages', items: ['HTML', 'CSS', 'JavaScript', 'TypeScript'] },
+  { title: 'Frontend Engineering', items: ['React', 'Next.js', 'Tailwind CSS', 'Redux'] },
+  { title: 'Backend & Integrations', items: ['Node.js', 'Express.js', 'REST API'] },
+  { title: 'Design & Creative', items: ['Graphic Design', 'Adobe Illustrator', 'Photoshop', 'UI / UX'] },
 ]
 
 const services = [
-  { n: '01', title: 'Frontend Development', desc: 'Responsive, accessible and engaging web interfaces built with modern frontend technologies.', icon: Code2 },
-  { n: '02', title: 'Full-stack Web Development', desc: 'End-to-end web experiences, connecting polished interfaces with server-side functionality.', icon: MonitorSmartphone },
-  { n: '03', title: 'UI & Web Design', desc: 'Clear visual systems and user-focused layouts that make digital products easier to use.', icon: Layers3 },
-  { n: '04', title: 'Graphic Design', desc: 'Creative visual assets and brand-consistent graphics for digital communication.', icon: Palette },
-  { n: '05', title: 'Digital Marketing', desc: 'Digital promotion and social media support to help brands communicate with their audience.', icon: Megaphone },
+  { n: '01', title: 'Frontend Development', desc: 'Responsive, accessible interfaces with thoughtful interactions and clean component structure.', Icon: Code2 },
+  { n: '02', title: 'Web Development', desc: 'Modern web experiences that connect polished user interfaces with practical functionality.', Icon: MonitorSmartphone },
+  { n: '03', title: 'UI & Web Design', desc: 'Simple, purposeful layouts that make digital products feel clear and easy to use.', Icon: Layers3 },
+  { n: '04', title: 'Graphic Design', desc: 'Visual assets and brand-consistent creative work for digital communication.', Icon: Palette },
 ]
 
-const certifications = [
-  'Graphic Design Course',
-  'Full Stack Web Development Course',
-  'Digital Marketing Course',
+const projects = [
+  { n: '01', title: 'Frontend interfaces', tag: 'WEB DEVELOPMENT', desc: 'Building responsive interfaces with attention to layout, accessibility and detail.' },
+  { n: '02', title: 'Visual design', tag: 'GRAPHIC DESIGN', desc: 'Creating clean visual communication for brands and digital platforms.' },
+  { n: '03', title: 'Learning in public', tag: 'EXPERIMENTS', desc: 'Small experiments and practice projects as I continue improving my development skills.' },
 ]
 
 const reveal = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 22 },
+  visible: { opacity: 1, y: 0, transition: { duration: .65, ease: [0.22, 1, .36, 1] } }
 }
 
-function SectionHeading({ eyebrow, title, description }) {
+function Heading({ number, eyebrow, title, text }) {
   return (
-    <motion.div className="section-heading" variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.25 }}>
-      <span className="eyebrow"><span />{eyebrow}</span>
+    <motion.div className="section-heading" variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: .2 }}>
+      <span className="section-index">{number} / {eyebrow}</span>
       <h2>{title}</h2>
-      {description && <p>{description}</p>}
+      {text && <p>{text}</p>}
     </motion.div>
   )
 }
@@ -63,9 +59,9 @@ function SectionHeading({ eyebrow, title, description }) {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-  const nav = [['About', '#about'], ['Skills', '#skills'], ['Services', '#services'], ['Projects', '#projects'], ['Experience', '#experience'], ['Contact', '#contact']]
-  const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
-  const sendMail = (e) => {
+  const nav = [['About', '#about'], ['Skills', '#skills'], ['Work', '#work'], ['Journey', '#journey'], ['Contact', '#contact']]
+  const update = e => setForm({ ...form, [e.target.name]: e.target.value })
+  const sendMail = e => {
     e.preventDefault()
     const body = `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
     window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(form.subject || 'Portfolio inquiry')}&body=${encodeURIComponent(body)}`
@@ -73,152 +69,103 @@ function App() {
 
   return (
     <div className="site-shell">
-      <div className="ambient ambient-one" /><div className="ambient ambient-two" />
       <header className="header">
-        <a className="brand" href="#home" aria-label="Mahfuz home"><span className="brand-mark">M.</span><span>MAHFUZ<span className="brand-dot">.</span></span></a>
+        <a className="wordmark" href="#home">M<span>.</span></a>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">{menuOpen ? <X /> : <Menu />}</button>
         <nav className={menuOpen ? 'nav nav-open' : 'nav'}>
           {nav.map(([label, href]) => <a key={label} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
-          <a className="nav-cta" href="#contact" onClick={() => setMenuOpen(false)}>Let's talk <ArrowUpRight size={15} /></a>
+          <a className="nav-contact" href="#contact" onClick={() => setMenuOpen(false)}>LET’S TALK <ArrowUpRight size={14} /></a>
         </nav>
       </header>
 
       <main>
-        <section className="hero section-wrap" id="home">
-          <div className="hero-copy">
-            <motion.div initial="hidden" animate="visible" variants={reveal}>
-              <span className="availability"><i /> OPEN TO OPPORTUNITIES</span>
-              <p className="hero-kicker">HELLO, I'M</p>
-              <h1>Mahfuz Ahammed <span>Muzahid.</span></h1>
-              <div className="role-line"><span className="role-bar" /> FRONTEND ENGINEER <span className="role-muted">/ CREATIVE THINKER</span></div>
-              <p className="hero-intro">{profile.intro}</p>
-              <div className="hero-actions">
-                <a className="button button-primary" href="#contact">Let's work together <ArrowUpRight size={17} /></a>
-                <a className="button button-ghost" href="#about">Explore my profile <ArrowDown size={16} /></a>
-              </div>
-              <div className="hero-socials">
-                {socials.slice(0, 4).map(({ label, href, Icon }) => <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label}><Icon size={17} /></a>)}
-              </div>
-            </motion.div>
+        <section className="hero" id="home">
+          <div className="hero-topline"><span>PORTFOLIO — 2026</span><span>BASED IN BANGLADESH</span></div>
+          <div className="hero-name-wrap">
+            <span className="hero-symbol"><Sparkles size={22} /></span>
+            <h1>MAHFUZ<span>.</span></h1>
+            <p className="hero-role">FRONTEND ENGINEER <i /> CREATIVE THINKER</p>
           </div>
-          <motion.div className="hero-visual" initial={{ opacity: 0, scale: .94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .8, delay: .15 }}>
-            <div className="portrait-frame">
-              <div className="portrait-grid" />
-              <img src="/images/mahfuz-portrait.webp" alt="Portrait of Mahfuz Ahammed Muzahid" />
-              <div className="portrait-index">01 <span>/ PROFILE</span></div>
+          <div className="hero-grid">
+            <div className="hero-intro">
+              <span className="eyebrow">HELLO, I’M MAHFUZ</span>
+              <p>{profile.intro}</p>
+              <div className="hero-links">
+                <a className="solid-link" href="#work">EXPLORE MY WORK <ArrowUpRight size={15} /></a>
+                <a className="text-link" href="#about">MORE ABOUT ME <ArrowDownRight size={15} /></a>
+              </div>
             </div>
-            <div className="floating-note"><span className="note-icon"><Sparkles size={16} /></span><span>Code with purpose.<br /><b>Design with clarity.</b></span></div>
-            <div className="hero-orbit" />
-          </motion.div>
-          <a className="scroll-cue" href="#about"><span>SCROLL TO EXPLORE</span><ArrowDown size={15} /></a>
+            <div className="hero-photo-wrap">
+              <div className="photo-outline"></div>
+              <img className="hero-photo" src="/images/mahfuz-portrait.webp" alt="Mahfuz Ahammed Muzahid" />
+              <span className="photo-caption">FIG. 01 — THE DEVELOPER</span>
+            </div>
+            <div className="hero-side">
+              <div className="monogram">M<span>.</span></div>
+              <p>CODE WITH PURPOSE.<br/>DESIGN WITH CLARITY.</p>
+              <div className="social-list">{socials.map(({label,href,Icon}) => <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label}><Icon size={18}/></a>)}</div>
+              <a className="side-email" href={`mailto:${profile.email}`}>{profile.email}</a>
+            </div>
+          </div>
+          <div className="hero-bottom"><span>SCROLL TO EXPLORE</span><span className="scroll-line"></span><span>01 — 05</span></div>
         </section>
 
-        <div className="ticker" aria-label="Areas of work"><div className="ticker-track">{Array.from({ length: 2 }).map((_, i) => <span key={i}>FRONTEND DEVELOPMENT <b>✳</b> FULL-STACK WEB <b>✳</b> CREATIVE DESIGN <b>✳</b> DIGITAL MARKETING <b>✳</b></span>)}</div></div>
-
-        <section className="section-wrap about-section" id="about">
-          <SectionHeading eyebrow="01 / ABOUT ME" title={<>A little about <span>who I am.</span></>} />
-          <div className="about-grid">
-            <div className="about-lead"><span className="large-quote">“</span><h3>Curiosity drives me.<br /><em>Creativity defines me.</em></h3></div>
-            <div className="about-body">
-              <p>I'm <strong>Mahfuz Ahammed Muzahid</strong>, a Frontend Engineer interested in building useful, intuitive and visually engaging digital experiences. I enjoy turning ideas into responsive interfaces and bringing design and technology together.</p>
-              <p>Alongside web development, I have a background in graphic design and digital marketing. This combination helps me approach digital products with both a developer's mindset and a creative perspective.</p>
-              <p>I'm always exploring new tools, improving my craft and looking forward to opportunities where I can learn, contribute and grow.</p>
-              <div className="about-facts">
-                <div><span>01</span><b>Frontend Engineering</b></div>
-                <div><span>02</span><b>Creative Design</b></div>
-                <div><span>03</span><b>Continuous Learning</b></div>
-              </div>
+        <section className="about section-pad" id="about">
+          <Heading number="01" eyebrow="A LITTLE INTRODUCTION" title={<>DESIGN MINDED.<br/><span>DEVELOPMENT DRIVEN.</span></>} text="A little about who I am and how I approach the work."/>
+          <div className="about-content">
+            <p className="about-statement">I bring together <em>technology</em> and <em>visual thinking</em> to make digital experiences feel effortless.</p>
+            <div className="about-copy">
+              <p>I’m {profile.name}, a frontend engineer interested in building useful, intuitive and visually engaging digital experiences. I enjoy turning ideas into responsive interfaces and bringing design and technology together.</p>
+              <p>Alongside web development, I have a background in graphic design and digital marketing. That creative foundation helps me think about both how a product works and how it communicates.</p>
+              <p>I’m always learning, experimenting and looking for opportunities to contribute to meaningful digital products.</p>
+              <a className="underlined-link" href="#contact">LET’S CONNECT <ArrowUpRight size={15}/></a>
             </div>
           </div>
         </section>
 
-        <section className="section-wrap skills-section" id="skills">
-          <SectionHeading eyebrow="02 / MY TOOLKIT" title={<>Skills & <span>expertise.</span></>} description="A growing toolkit across development, design and digital communication." />
-          <div className="skills-grid">
-            {skillGroups.map(({ title, icon: Icon, items }, idx) => <motion.article className="skill-card" key={title} variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: idx * .06 }}>
-              <div className="skill-card-top"><span className="skill-icon"><Icon size={19} /></span><span className="skill-number">0{idx + 1}</span></div>
-              <h3>{title}</h3><div className="skill-tags">{items.map(item => <span key={item}>{item}</span>)}</div>
-            </motion.article>)}
+        <section className="skills section-pad" id="skills">
+          <Heading number="02" eyebrow="TOOLS I WORK WITH" title={<>MY CREATIVE &<br/><span>TECHNICAL TOOLKIT.</span></>} text="A growing toolkit across frontend development, design and digital communication."/>
+          <div className="skills-visual">
+            <div className="orbit orbit-one"></div><div className="orbit orbit-two"></div>
+            <div className="orbit-core"><Code2 size={38}/><span>BUILD</span></div>
+            <span className="orbit-chip chip-one">JS</span><span className="orbit-chip chip-two">CSS</span><span className="orbit-chip chip-three">UI</span><span className="orbit-chip chip-four">REACT</span><span className="orbit-chip chip-five">AI</span><span className="orbit-chip chip-six">WEB</span>
+          </div>
+          <div className="skill-columns">
+            {skills.map((group,i)=><article className="skill-column" key={group.title}><span className="skill-number">0{i+1}</span><h3>{group.title}</h3><ul>{group.items.map(item=><li key={item}>{item}</li>)}</ul></article>)}
           </div>
         </section>
 
-        <section className="section-wrap services-section" id="services">
-          <SectionHeading eyebrow="03 / WHAT I DO" title={<>Ways I can <span>contribute.</span></>} description="A mix of technical and creative services for digital products and brands." />
-          <div className="services-list">
-            {services.map(({ n, title, desc, icon: Icon }) => <motion.article className="service-row" key={n} variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              <span className="service-n">{n}</span><span className="service-icon"><Icon size={21} /></span><div className="service-copy"><h3>{title}</h3><p>{desc}</p></div><ArrowUpRight className="service-arrow" size={22} />
-            </motion.article>)}
-          </div>
+        <section className="services section-pad">
+          <Heading number="03" eyebrow="HOW I CAN HELP" title={<>WHAT I BRING<br/><span>TO THE TABLE.</span></>} text="A combination of technical and creative skills for digital products and brands."/>
+          <div className="service-list">{services.map(({n,title,desc,Icon})=><article className="service-item" key={n}><span className="service-no">{n}</span><span className="service-icon"><Icon size={22}/></span><div><h3>{title}</h3><p>{desc}</p></div><ArrowUpRight className="service-arrow" size={23}/></article>)}</div>
         </section>
 
-        <section className="section-wrap journey-section" id="experience">
-          <SectionHeading eyebrow="04 / MY JOURNEY" title={<>Learning, building <span>& growing.</span></>} />
+        <section className="work section-pad" id="work">
+          <Heading number="04" eyebrow="SELECTED DIRECTIONS" title={<>THINGS I LOVE<br/><span>TO CREATE.</span></>} text="A snapshot of the areas I’m developing and exploring. More detailed case studies will be added as projects are ready to share."/>
+          <div className="project-list">{projects.map((p,i)=><article className={`project-card project-${i+1}`} key={p.n}><div className="project-art"><span>{p.n}</span><div className="art-shape"><i></i><b></b><em></em></div></div><div className="project-info"><span>{p.tag}</span><h3>{p.title}</h3><p>{p.desc}</p><a href="https://github.com/alviimahfuz" target="_blank" rel="noreferrer">VIEW GITHUB <ArrowUpRight size={15}/></a></div></article>)}</div>
+        </section>
+
+        <section className="journey section-pad" id="journey">
+          <Heading number="05" eyebrow="THE JOURNEY SO FAR" title={<>ALWAYS LEARNING.<br/><span>ALWAYS BUILDING.</span></>}/>
           <div className="journey-grid">
-            <div className="journey-column">
-              <h3 className="column-title"><BriefcaseBusiness size={18} /> EXPERIENCE</h3>
-              <article className="timeline-card">
-                <span className="timeline-dot" /><span className="timeline-label">INTERNSHIP · 3 MONTHS</span>
-                <h3>Frontend Engineering Intern</h3><p className="company">Betopia Group</p>
-                <p>Gained practical exposure to frontend engineering workflows and contributed as an intern in a professional team environment.</p>
-              </article>
-            </div>
-            <div className="journey-column">
-              <h3 className="column-title"><GraduationCap size={19} /> EDUCATION</h3>
-              <article className="timeline-card">
-                <span className="timeline-dot" /><span className="timeline-label">COMPLETED · 2026</span>
-                <h3>Diploma in Engineering</h3><p className="company">Computer Science & Technology</p>
-              </article>
-              <article className="timeline-card timeline-card-next">
-                <span className="timeline-dot" /><span className="timeline-label">STARTED · 2026</span>
-                <h3>BSc in Software Engineering</h3><p className="company">Undergraduate Studies</p>
-              </article>
-            </div>
+            <article className="journey-block"><span className="journey-label"><BriefcaseBusiness size={17}/> EXPERIENCE</span><div className="journey-entry"><span>INTERNSHIP · 3 MONTHS</span><h3>Frontend Engineering Intern</h3><p className="journey-org">Betopia Group</p><p>Practical exposure to frontend engineering workflows and contributing in a professional team environment.</p></div></article>
+            <article className="journey-block"><span className="journey-label"><GraduationCap size={18}/> EDUCATION</span><div className="journey-entry"><span>ENGINEERING STUDIES</span><h3>Diploma in Engineering</h3><p className="journey-org">Computer Science & Technology</p><p>Building a foundation in computing, programming and software development.</p></div></article>
           </div>
-          <div className="certifications">
-            <div className="cert-heading"><BadgeCheck size={19} /><h3>ADDITIONAL CERTIFICATIONS</h3></div>
-            <div className="cert-list">{certifications.map((cert, i) => <div className="cert-item" key={cert}><span>0{i + 1}</span>{cert}<BadgeCheck size={16} /></div>)}</div>
-          </div>
+          <div className="cert-row"><span>COURSES & CERTIFICATES</span><p>Graphic Design <i/> Full Stack Web Development <i/> Digital Marketing</p></div>
         </section>
 
-        <section className="section-wrap projects-section" id="projects">
-          <SectionHeading eyebrow="05 / SELECTED WORK" title={<>The next chapter is <span>in progress.</span></>} description="I'm currently building and documenting projects. This space will feature selected work as it becomes ready to share." />
-          <div className="project-grid">
-            <article className="project-card project-card-featured">
-              <div className="project-card-visual portfolio-visual"><span className="visual-window"><i /><i /><i /></span><div className="visual-monogram">M<span>.</span></div><span className="visual-caption">PERSONAL PORTFOLIO / 2026</span></div>
-              <div className="project-card-content"><div className="project-meta"><span>01 / FEATURED</span><span>PERSONAL WEBSITE</span></div><h3>Mahfuz — Personal Portfolio</h3><p>A personal space presenting my development journey, creative skills, experience and ways to connect.</p><div className="project-tags"><span>React</span><span>Vite</span><span>Framer Motion</span><span>CSS</span></div><a href="https://mahfuz-portfolio-flax.vercel.app" target="_blank" rel="noreferrer" className="text-link">View live website <ArrowUpRight size={16} /></a></div>
-            </article>
-            <article className="project-card project-card-secondary">
-              <div className="project-card-visual code-visual"><Code2 size={54} /><span>BUILD / LEARN / REPEAT</span></div>
-              <div className="project-card-content"><div className="project-meta"><span>02 / EXPLORING</span><span>CODE & EXPERIMENTS</span></div><h3>Learning in Public</h3><p>Small experiments and practice projects as I continue strengthening my JavaScript and frontend fundamentals.</p><div className="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a href="https://github.com/AlviiMahfuz" target="_blank" rel="noreferrer" className="text-link">Explore GitHub <ArrowUpRight size={16} /></a></div>
-            </article>
-          </div>
-        </section>
-
-        <section className="contact-section" id="contact">
-          <div className="section-wrap">
-            <SectionHeading eyebrow="06 / GET IN TOUCH" title={<>Have an idea? Let's <span>make it real.</span></>} description="I'm open to conversations about opportunities, collaborations and creative projects." />
-            <div className="contact-grid">
-              <div className="contact-details">
-                <a href={`mailto:${profile.email}`} className="contact-method"><span><Mail size={19} /></span><div><small>EMAIL ME</small><b>{profile.email}</b></div><ArrowUpRight size={17} /></a>
-                <a href="tel:+8801751797996" className="contact-method"><span><Phone size={19} /></span><div><small>CALL ME</small><b>{profile.phone}</b></div><ArrowUpRight size={17} /></a>
-                <div className="contact-socials"><p>FIND ME AROUND THE WEB</p><div>{socials.map(({ label, href, Icon }) => <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label}><Icon size={18} /></a>)}</div></div>
-              </div>
-              <form className="contact-form" onSubmit={sendMail}>
-                <div className="form-row"><label>Your name<input required name="name" value={form.name} onChange={update} placeholder="John Doe" /></label><label>Your email<input required type="email" name="email" value={form.email} onChange={update} placeholder="john@example.com" /></label></div>
-                <label>Subject<input name="subject" value={form.subject} onChange={update} placeholder="What's this about?" /></label>
-                <label>Your message<textarea required rows="5" name="message" value={form.message} onChange={update} placeholder="Tell me a little about your idea..." /></label>
-                <button className="button button-primary form-submit" type="submit">Send message <Send size={16} /></button>
-                <p className="form-note">This opens your email app with your message prepared.</p>
-              </form>
+        <section className="contact" id="contact">
+          <div className="contact-inner">
+            <div className="contact-top"><span>HAVE A PROJECT IN MIND?</span><span>LET’S MAKE IT HAPPEN ↘</span></div>
+            <div className="contact-heading"><h2>LET’S CREATE<br/>SOMETHING<br/><span>MEANINGFUL.</span></h2><div className="contact-direct"><div><small>EMAIL ME</small><a href={`mailto:${profile.email}`}>{profile.email} <ArrowUpRight size={14}/></a></div><div><small>CALL ME</small><a href="tel:+8801751797996">{profile.phone} <ArrowUpRight size={14}/></a></div></div></div>
+            <div className="contact-bottom">
+              <div className="contact-socials">{socials.map(({label,href,Icon})=><a key={label} href={href} target="_blank" rel="noreferrer"><Icon size={16}/>{label.toUpperCase()}</a>)}</div>
+              <form className="contact-form" onSubmit={sendMail}><h3>DROP ME A MESSAGE</h3><div className="form-pair"><input required name="name" value={form.name} onChange={update} placeholder="YOUR NAME"/><input required type="email" name="email" value={form.email} onChange={update} placeholder="YOUR EMAIL"/></div><input name="subject" value={form.subject} onChange={update} placeholder="SUBJECT"/><textarea required rows="3" name="message" value={form.message} onChange={update} placeholder="TELL ME ABOUT YOUR IDEA..."/><button type="submit">SEND MESSAGE <Send size={15}/></button><small>Opens your email app with the message prepared.</small></form>
             </div>
+            <footer className="footer"><a className="wordmark footer-mark" href="#home">M<span>.</span></a><span>© {new Date().getFullYear()} {profile.name.toUpperCase()}. ALL RIGHTS RESERVED.</span><a href="#home">BACK TO TOP ↑</a></footer>
           </div>
         </section>
       </main>
-
-      <footer className="footer">
-        <div className="footer-top"><a className="brand" href="#home"><span className="brand-mark">M.</span><span>MAHFUZ<span className="brand-dot">.</span></span></a><p>Thoughtful code. Meaningful experiences.</p><a href="#home" className="back-top">BACK TO TOP <ArrowUpRight size={15} /></a></div>
-        <div className="footer-bottom"><span>© {new Date().getFullYear()} Mahfuz Ahammed Muzahid. All rights reserved.</span><span>DESIGNED & BUILT WITH PURPOSE <span className="brand-dot">✳</span></span></div>
-      </footer>
     </div>
   )
 }
