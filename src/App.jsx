@@ -50,7 +50,7 @@ function Heading({ number, eyebrow, title, text }) {
   return (
     <motion.div className="section-heading" variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: .2 }}>
       <span className="section-index">{number} / {eyebrow}</span>
-      <h2>{title}</h2>
+      <h2 data-tilt>{title}</h2>
       {text && <p>{text}</p>}
     </motion.div>
   )
@@ -58,6 +58,36 @@ function Heading({ number, eyebrow, title, text }) {
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [loadCount, setLoadCount] = useState(0)
+  useEffect(() => {
+    let value = 0
+    const tick = window.setInterval(() => {
+      value = Math.min(100, value + Math.ceil(Math.random() * 9))
+      setLoadCount(value)
+      if (value >= 100) { window.clearInterval(tick); window.setTimeout(() => setLoading(false), 380) }
+    }, 48)
+    const cursor = document.querySelector('.custom-cursor')
+    const cursorRing = document.querySelector('.cursor-ring')
+    const move = (event) => {
+      if (cursor) cursor.style.transform = 'translate3d(' + event.clientX + 'px,' + event.clientY + 'px,0)'
+      if (cursorRing) cursorRing.style.transform = 'translate3d(' + event.clientX + 'px,' + event.clientY + 'px,0)'
+      const target = event.target.closest('[data-tilt]')
+      document.querySelectorAll('[data-tilt].is-tilting').forEach(el => { if (el !== target) el.classList.remove('is-tilting') })
+      if (target) {
+        const r = target.getBoundingClientRect(), x = (event.clientX-r.left)/r.width-.5, y = (event.clientY-r.top)/r.height-.5
+        target.style.setProperty('--tilt-x', (-y*7)+'deg'); target.style.setProperty('--tilt-y', (x*9)+'deg')
+        target.style.setProperty('--shine-x', ((x+.5)*100)+'%'); target.style.setProperty('--shine-y', ((y+.5)*100)+'%')
+        target.classList.add('is-tilting')
+      }
+    }
+    const leave = () => document.querySelectorAll('[data-tilt].is-tilting').forEach(el => el.classList.remove('is-tilting'))
+    const over = (event) => { if (event.target.closest('a,button,[data-tilt]')) document.body.classList.add('cursor-hover') }
+    const out = (event) => { if (event.target.closest('a,button,[data-tilt]')) document.body.classList.remove('cursor-hover') }
+    window.addEventListener('mousemove',move); window.addEventListener('mouseout',leave)
+    document.addEventListener('mouseover',over); document.addEventListener('mouseout',out)
+    return () => { window.clearInterval(tick); window.removeEventListener('mousemove',move); window.removeEventListener('mouseout',leave); document.removeEventListener('mouseover',over); document.removeEventListener('mouseout',out) }
+  }, [])
   const [loading, setLoading] = useState(true)
   const [progress, setProgress] = useState(0)
   useEffect(() => {
@@ -89,7 +119,9 @@ function App() {
   }
 
   return (
-    <div className="site-shell">\n      <div className={loading ? "intro-loader" : "intro-loader loader-done"} aria-hidden={!loading}><div className="loader-word">MAHFUZ<span>.</span></div><div className="loader-bottom"><span>CREATIVE DEVELOPER & DESIGNER</span><strong>{String(progress).padStart(3, "0")}</strong></div><div className="loader-track"><i style={{ width: `${progress}%` }} /></div></div>\n      <div className="custom-cursor" aria-hidden="true" />
+    <div className="site-shell">
+      {loading && <div className="preloader"><div className="loader-mark">M<span>.</span></div><div className="loader-bottom"><span>MAHFUZ A. MUZAHID</span><strong>{String(loadCount).padStart(2, "0")}<small>%</small></strong></div><div className="loader-track"><i style={{ width: loadCount + "%" }} /></div></div>}
+      <div className="custom-cursor" /><div className="cursor-ring" />\n      <div className={loading ? "intro-loader" : "intro-loader loader-done"} aria-hidden={!loading}><div className="loader-word">MAHFUZ<span>.</span></div><div className="loader-bottom"><span>CREATIVE DEVELOPER & DESIGNER</span><strong>{String(progress).padStart(3, "0")}</strong></div><div className="loader-track"><i style={{ width: `${progress}%` }} /></div></div>\n      <div className="custom-cursor" aria-hidden="true" />
       <header className="header">
         <a className="wordmark" href="#home">M<span>.</span></a>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">{menuOpen ? <X /> : <Menu />}</button>
