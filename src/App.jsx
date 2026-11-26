@@ -89,7 +89,7 @@ function App() {
   }
 
   return (
-    <div className="site-shell">
+    <div className="site-shell">\n      <div className={loading ? "intro-loader" : "intro-loader loader-done"} aria-hidden={!loading}><div className="loader-word">MAHFUZ<span>.</span></div><div className="loader-bottom"><span>CREATIVE DEVELOPER & DESIGNER</span><strong>{String(progress).padStart(3, "0")}</strong></div><div className="loader-track"><i style={{ width: `${progress}%` }} /></div></div>\n      <div className="custom-cursor" aria-hidden="true" />
       <header className="header">
         <a className="wordmark" href="#home">M<span>.</span></a>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">{menuOpen ? <X /> : <Menu />}</button>
