@@ -63,7 +63,7 @@ function SectionHeading({ eyebrow, title, description }) {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-  const nav = [['About', '#about'], ['Skills', '#skills'], ['Services', '#services'], ['Experience', '#experience'], ['Contact', '#contact']]
+  const nav = [['About', '#about'], ['Skills', '#skills'], ['Services', '#services'], ['Projects', '#projects'], ['Experience', '#experience'], ['Contact', '#contact']]
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
   const sendMail = (e) => {
     e.preventDefault()
@@ -182,10 +182,15 @@ function App() {
 
         <section className="section-wrap projects-section" id="projects">
           <SectionHeading eyebrow="05 / SELECTED WORK" title={<>The next chapter is <span>in progress.</span></>} description="I'm currently building and documenting projects. This space will feature selected work as it becomes ready to share." />
-          <div className="project-placeholder">
-            <div className="project-placeholder-icon"><Code2 size={28} /></div>
-            <div><span className="timeline-label">WORK IN PROGRESS</span><h3>Good things are being built.</h3><p>Check back soon for real projects, experiments and case studies.</p></div>
-            <a href="https://github.com/alviimahfuz" target="_blank" rel="noreferrer" className="text-link">Visit GitHub <ArrowUpRight size={16} /></a>
+          <div className="project-grid">
+            <article className="project-card project-card-featured">
+              <div className="project-card-visual portfolio-visual"><span className="visual-window"><i /><i /><i /></span><div className="visual-monogram">M<span>.</span></div><span className="visual-caption">PERSONAL PORTFOLIO / 2026</span></div>
+              <div className="project-card-content"><div className="project-meta"><span>01 / FEATURED</span><span>PERSONAL WEBSITE</span></div><h3>Mahfuz — Personal Portfolio</h3><p>A personal space presenting my development journey, creative skills, experience and ways to connect.</p><div className="project-tags"><span>React</span><span>Vite</span><span>Framer Motion</span><span>CSS</span></div><a href="https://mahfuz-portfolio-flax.vercel.app" target="_blank" rel="noreferrer" className="text-link">View live website <ArrowUpRight size={16} /></a></div>
+            </article>
+            <article className="project-card project-card-secondary">
+              <div className="project-card-visual code-visual"><Code2 size={54} /><span>BUILD / LEARN / REPEAT</span></div>
+              <div className="project-card-content"><div className="project-meta"><span>02 / EXPLORING</span><span>CODE & EXPERIMENTS</span></div><h3>Learning in Public</h3><p>Small experiments and practice projects as I continue strengthening my JavaScript and frontend fundamentals.</p><div className="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><a href="https://github.com/AlviiMahfuz" target="_blank" rel="noreferrer" className="text-link">Explore GitHub <ArrowUpRight size={16} /></a></div>
+            </article>
           </div>
         </section>
 
