@@ -1,0 +1,39 @@
+/* Premium visual refinements for Mahfuz's portfolio */
+:root {
+  --accent: #c8f27a;
+  --accent-soft: rgba(200, 242, 122, .12);
+}
+::selection { background: var(--accent); color: #10140b; }
+.header { position: sticky; top: 0; z-index: 30; background: rgba(9, 11, 16, .82); backdrop-filter: blur(18px); }
+.brand { transition: opacity .2s ease; }
+.brand:hover { opacity: .78; }
+.nav > a { transition: color .2s ease, border-color .2s ease, transform .2s ease; }
+.nav > a:hover { transform: translateY(-1px); }
+.hero { isolation: isolate; }
+.hero-copy { max-width: 700px; }
+.hero h1 { text-wrap: balance; }
+.hero h1 span, .section-heading h2 span { text-shadow: 0 0 32px rgba(200, 242, 122, .12); }
+.portrait-frame { border-radius: 2px; box-shadow: 22px 22px 0 rgba(200, 242, 122, .035); }
+.portrait-frame img { transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .5s ease; }
+.portrait-frame:hover img { transform: scale(1.025); filter: saturate(1); }
+.button-primary { box-shadow: 0 8px 28px rgba(200, 242, 122, .12); }
+.button-primary:hover { box-shadow: 0 12px 34px rgba(200, 242, 122, .2); }
+.skill-card, .contact-form, .certifications { border-radius: 8px; }
+.skill-card { position: relative; overflow: hidden; }
+.skill-card::after { content: ''; position: absolute; inset: auto 0 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0; transition: opacity .25s ease; }
+.skill-card:hover::after { opacity: .8; }
+.service-row { border-radius: 6px; padding-inline: 16px; }
+.service-copy h3 { transition: color .2s ease; }
+.service-row:hover .service-copy h3 { color: var(--accent); }
+.timeline-card { transition: border-color .2s ease; }
+.contact-form input, .contact-form textarea { transition: border-color .2s ease, background .2s ease; }
+.contact-form input:focus, .contact-form textarea:focus { background: #10151b; }
+.footer { padding-top: 42px; }
+@media (max-width: 650px) {
+  .header { background: rgba(9, 11, 16, .94); }
+  .hero h1 { text-wrap: initial; }
+  .service-row { padding-inline: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portrait-frame img, .skill-card::after { transition: none; }
+}
