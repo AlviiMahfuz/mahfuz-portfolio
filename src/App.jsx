@@ -100,7 +100,8 @@ function App() {
   return (
     <div className="site-shell">
       {loading && <div className="preloader"><div className="loader-mark">M<span>.</span></div><div className="loader-bottom"><span>MAHFUZ A. MUZAHID</span><strong>{String(loadCount).padStart(2, "0")}<small>%</small></strong></div><div className="loader-track"><i style={{ width: loadCount + "%" }} /></div></div>}
-      <div className="custom-cursor" /><div className="cursor-ring" />\n      <header className="header">
+      <div className="custom-cursor" /><div className="cursor-ring" />
+      <header className="header">
         <a className="wordmark" href="#home">M<span>.</span></a>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">{menuOpen ? <X /> : <Menu />}</button>
         <nav className={menuOpen ? 'nav nav-open' : 'nav'}>
@@ -112,7 +113,7 @@ function App() {
       <main>
         <section className="hero" id="home">
           <div className="hero-topline"><span>PORTFOLIO — 2026</span><span>BASED IN BANGLADESH</span></div>
-          <div className="hero-name-wrap">
+          <div className="hero-name-wrap" data-tilt>
             <span className="hero-symbol"><Sparkles size={22} /></span>
             <h1 data-tilt>MAHFUZ<span>.</span></h1>
             <p className="hero-role">FRONTEND ENGINEER <i /> CREATIVE THINKER</p>
@@ -126,7 +127,7 @@ function App() {
                 <a className="text-link" href="#about">MORE ABOUT ME <ArrowDownRight size={15} /></a>
               </div>
             </div>
-            <div className="hero-photo-wrap">
+            <div className="hero-photo-wrap" data-tilt>
               <div className="photo-outline"></div>
               <img data-tilt className="hero-photo" src="/images/mahfuz-portrait.webp" alt="Mahfuz Ahammed Muzahid" />
               <span className="photo-caption">FIG. 01 — THE DEVELOPER</span>
@@ -158,22 +159,22 @@ function App() {
           <Heading number="02" eyebrow="TOOLS I WORK WITH" title={<>MY CREATIVE &<br/><span>TECHNICAL TOOLKIT.</span></>} text="A growing toolkit across frontend development, design and digital communication."/>
           <div className="skills-visual">
             <div className="orbit orbit-one"></div><div className="orbit orbit-two"></div>
-            <div className="orbit-core"><Code2 size={38}/><span>BUILD</span></div>
+            <div className="orbit-core" data-tilt><Code2 size={38}/><span>BUILD</span></div>
             <span className="orbit-chip chip-one">JS</span><span className="orbit-chip chip-two">CSS</span><span className="orbit-chip chip-three">UI</span><span className="orbit-chip chip-four">REACT</span><span className="orbit-chip chip-five">AI</span><span className="orbit-chip chip-six">WEB</span>
           </div>
           <div className="skill-columns">
-            {skills.map((group,i)=><article className="skill-column" key={group.title}><span className="skill-number">0{i+1}</span><h3>{group.title}</h3><ul>{group.items.map(item=><li key={item}>{item}</li>)}</ul></article>)}
+            {skills.map((group,i)=><article className="skill-column" data-tilt key={group.title}><span className="skill-number">0{i+1}</span><h3>{group.title}</h3><ul>{group.items.map(item=><li key={item}>{item}</li>)}</ul></article>)}
           </div>
         </section>
 
         <section className="services section-pad">
           <Heading number="03" eyebrow="HOW I CAN HELP" title={<>WHAT I BRING<br/><span>TO THE TABLE.</span></>} text="A combination of technical and creative skills for digital products and brands."/>
-          <div className="service-list">{services.map(({n,title,desc,Icon})=><article className="service-item" key={n}><span className="service-no">{n}</span><span className="service-icon"><Icon size={22}/></span><div><h3>{title}</h3><p>{desc}</p></div><ArrowUpRight className="service-arrow" size={23}/></article>)}</div>
+          <div className="service-list">{services.map(({n,title,desc,Icon})=><article className="service-item" data-tilt key={n}><span className="service-no">{n}</span><span className="service-icon"><Icon size={22}/></span><div><h3>{title}</h3><p>{desc}</p></div><ArrowUpRight className="service-arrow" size={23}/></article>)}</div>
         </section>
 
         <section className="work section-pad" id="work">
           <Heading number="04" eyebrow="SELECTED DIRECTIONS" title={<>THINGS I LOVE<br/><span>TO CREATE.</span></>} text="A snapshot of the areas I’m developing and exploring. More detailed case studies will be added as projects are ready to share."/>
-          <div className="project-list">{projects.map((p,i)=><article className={`project-card project-${i+1}`} key={p.n}><div className="project-art"><span>{p.n}</span><div className="art-shape"><i></i><b></b><em></em></div></div><div className="project-info"><span>{p.tag}</span><h3>{p.title}</h3><p>{p.desc}</p><a href="https://github.com/alviimahfuz" target="_blank" rel="noreferrer">VIEW GITHUB <ArrowUpRight size={15}/></a></div></article>)}</div>
+          <div className="project-list">{projects.map((p,i)=><article className={`project-card project-${i+1}`} data-tilt key={p.n}><div className="project-art"><span>{p.n}</span><div className="art-shape"><i></i><b></b><em></em></div></div><div className="project-info"><span>{p.tag}</span><h3>{p.title}</h3><p>{p.desc}</p><a href="https://github.com/alviimahfuz" target="_blank" rel="noreferrer">VIEW GITHUB <ArrowUpRight size={15}/></a></div></article>)}</div>
         </section>
 
         <section className="journey section-pad" id="journey">
