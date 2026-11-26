@@ -88,27 +88,6 @@ function App() {
     document.addEventListener('mouseover',over); document.addEventListener('mouseout',out)
     return () => { window.clearInterval(tick); window.removeEventListener('mousemove',move); window.removeEventListener('mouseout',leave); document.removeEventListener('mouseover',over); document.removeEventListener('mouseout',out) }
   }, [])
-  const [loading, setLoading] = useState(true)
-  const [progress, setProgress] = useState(0)
-  useEffect(() => {
-    let value = 0
-    const timer = window.setInterval(() => {
-      value = Math.min(100, value + Math.ceil(Math.random() * 7))
-      setProgress(value)
-      if (value >= 100) { window.clearInterval(timer); window.setTimeout(() => setLoading(false), 420) }
-    }, 48)
-    return () => window.clearInterval(timer)
-  }, [])
-  useEffect(() => {
-    const move = (event) => {
-      document.documentElement.style.setProperty('--pointer-x', `${event.clientX}px`)
-      document.documentElement.style.setProperty('--pointer-y', `${event.clientY}px`)
-    }
-    const over = (event) => document.body.classList.toggle('cursor-hover', !!event.target.closest('a, button, input, textarea, .skill-card, .service-row, .timeline-card, .portrait-frame, .project-placeholder'))
-    window.addEventListener('mousemove', move)
-    document.addEventListener('mouseover', over)
-    return () => { window.removeEventListener('mousemove', move); document.removeEventListener('mouseover', over) }
-  }, [])
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const nav = [['About', '#about'], ['Skills', '#skills'], ['Work', '#work'], ['Journey', '#journey'], ['Contact', '#contact']]
   const update = e => setForm({ ...form, [e.target.name]: e.target.value })
@@ -121,8 +100,7 @@ function App() {
   return (
     <div className="site-shell">
       {loading && <div className="preloader"><div className="loader-mark">M<span>.</span></div><div className="loader-bottom"><span>MAHFUZ A. MUZAHID</span><strong>{String(loadCount).padStart(2, "0")}<small>%</small></strong></div><div className="loader-track"><i style={{ width: loadCount + "%" }} /></div></div>}
-      <div className="custom-cursor" /><div className="cursor-ring" />\n      <div className={loading ? "intro-loader" : "intro-loader loader-done"} aria-hidden={!loading}><div className="loader-word">MAHFUZ<span>.</span></div><div className="loader-bottom"><span>CREATIVE DEVELOPER & DESIGNER</span><strong>{String(progress).padStart(3, "0")}</strong></div><div className="loader-track"><i style={{ width: `${progress}%` }} /></div></div>\n      <div className="custom-cursor" aria-hidden="true" />
-      <header className="header">
+      <div className="custom-cursor" /><div className="cursor-ring" />\n      <header className="header">
         <a className="wordmark" href="#home">M<span>.</span></a>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">{menuOpen ? <X /> : <Menu />}</button>
         <nav className={menuOpen ? 'nav nav-open' : 'nav'}>
@@ -136,7 +114,7 @@ function App() {
           <div className="hero-topline"><span>PORTFOLIO — 2026</span><span>BASED IN BANGLADESH</span></div>
           <div className="hero-name-wrap">
             <span className="hero-symbol"><Sparkles size={22} /></span>
-            <h1>MAHFUZ<span>.</span></h1>
+            <h1 data-tilt>MAHFUZ<span>.</span></h1>
             <p className="hero-role">FRONTEND ENGINEER <i /> CREATIVE THINKER</p>
           </div>
           <div className="hero-grid">
@@ -150,7 +128,7 @@ function App() {
             </div>
             <div className="hero-photo-wrap">
               <div className="photo-outline"></div>
-              <img className="hero-photo" src="/images/mahfuz-portrait.webp" alt="Mahfuz Ahammed Muzahid" />
+              <img data-tilt className="hero-photo" src="/images/mahfuz-portrait.webp" alt="Mahfuz Ahammed Muzahid" />
               <span className="photo-caption">FIG. 01 — THE DEVELOPER</span>
             </div>
             <div className="hero-side">
