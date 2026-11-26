@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   ArrowDownRight, ArrowUpRight, Github, Linkedin, Instagram, Mail, Phone,
@@ -58,6 +58,27 @@ function Heading({ number, eyebrow, title, text }) {
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [progress, setProgress] = useState(0)
+  useEffect(() => {
+    let value = 0
+    const timer = window.setInterval(() => {
+      value = Math.min(100, value + Math.ceil(Math.random() * 7))
+      setProgress(value)
+      if (value >= 100) { window.clearInterval(timer); window.setTimeout(() => setLoading(false), 420) }
+    }, 48)
+    return () => window.clearInterval(timer)
+  }, [])
+  useEffect(() => {
+    const move = (event) => {
+      document.documentElement.style.setProperty('--pointer-x', `${event.clientX}px`)
+      document.documentElement.style.setProperty('--pointer-y', `${event.clientY}px`)
+    }
+    const over = (event) => document.body.classList.toggle('cursor-hover', !!event.target.closest('a, button, input, textarea, .skill-card, .service-row, .timeline-card, .portrait-frame, .project-placeholder'))
+    window.addEventListener('mousemove', move)
+    document.addEventListener('mouseover', over)
+    return () => { window.removeEventListener('mousemove', move); document.removeEventListener('mouseover', over) }
+  }, [])
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const nav = [['About', '#about'], ['Skills', '#skills'], ['Work', '#work'], ['Journey', '#journey'], ['Contact', '#contact']]
   const update = e => setForm({ ...form, [e.target.name]: e.target.value })
